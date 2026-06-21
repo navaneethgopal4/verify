@@ -79,8 +79,10 @@ const App = () => {
       ? { url: inputValue.trim() } 
       : { text: inputValue.trim() };
 
+    const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     try {
-      const response = await axios.post('http://localhost:5000/api/verify', payload);
+      const response = await axios.post(`${apiBaseUrl}/api/verify`, payload);
       setReport(response.data);
       saveToHistory(response.data);
     } catch (err) {

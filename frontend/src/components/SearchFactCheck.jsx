@@ -14,9 +14,10 @@ const SearchFactCheck = () => {
 
     setLoading(true);
     setError(null);
+    const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
     try {
       // Query our local backend which wraps the DuckDuckGo lookup
-      const response = await axios.get(`http://localhost:5000/api/search-factchecks?q=${encodeURIComponent(query)}`);
+      const response = await axios.get(`${apiBaseUrl}/api/search-factchecks?q=${encodeURIComponent(query)}`);
       setResults(response.data.results || []);
     } catch (err) {
       console.error(err);
